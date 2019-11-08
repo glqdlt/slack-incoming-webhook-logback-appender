@@ -22,7 +22,6 @@ logback.xml
     </appender>
 
     <appender name="REST" class="com.glqdlt.pm6.webcms.logging.RestfulAppender">
-        <poolSize>1</poolSize>
         <webhookUrl>https://hooks.slack.com/services/...</webhookUrl>
         <emoji>
             <code>:pig:</code>    
@@ -57,7 +56,6 @@ logback.xml
     </appender>
 
     <appender name="REST" class="com.glqdlt.pm6.webcms.logging.RestfulAppender">
-        <poolSize>1</poolSize>
         <webhookUrl>https://hooks.slack.com/services/...</webhookUrl>
         <emoji>
             <code>:pig:</code>    

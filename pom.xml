@@ -6,7 +6,7 @@
 
     <groupId>com.glqdlt.helper</groupId>
     <artifactId>slack-incoming-webhook-appender</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <scm>
         <url>
             https://github.com/glqdlt/slcak-incoming-webhook-logback-appender.git
