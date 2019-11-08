@@ -23,7 +23,6 @@ import java.util.Optional;
 public class RestfulAppender extends AppenderBase<ILoggingEvent> {
 
     private final RestTemplateBuilder builder;
-    private Integer poolSize;
     private String webhookUrl;
     private Emoji emoji;
 
@@ -43,14 +42,6 @@ public class RestfulAppender extends AppenderBase<ILoggingEvent> {
         this.webhookUrl = webhookUrl;
     }
 
-    public Integer getPoolSize() {
-        return poolSize;
-    }
-
-    public void setPoolSize(Integer poolSize) {
-        this.poolSize = poolSize;
-    }
-
     public RestfulAppender() {
         this.builder = new RestTemplateBuilder().
                 setConnectTimeout(Duration.ofSeconds(30));
@@ -64,7 +55,7 @@ public class RestfulAppender extends AppenderBase<ILoggingEvent> {
      * @see <a href='https://www.webfx.com/tools/emoji-cheat-sheet/'>https://www.webfx.com/tools/emoji-cheat-sheet/</a>
      */
     @Override
-    protected void append(ILoggingEvent eventObject) {
+    final protected void append(ILoggingEvent eventObject) {
         if (eventObject.getLevel().equals(Level.ERROR)) {
             try {
                 RestTemplate z = builder.build();
@@ -77,7 +68,7 @@ public class RestfulAppender extends AppenderBase<ILoggingEvent> {
                         .body(payload);
                 z.exchange(requestEntity, String.class);
             } catch (RuntimeException | URISyntaxException e) {
-//                  TODO 이거 에러 캐치 어케 되는지 로그백 설계를 좀 봐야할듯
+                //    TODO fail 시에 retry 전략 어케 할건가 고민좀
                 throw new RuntimeException(e);
             }
         }
