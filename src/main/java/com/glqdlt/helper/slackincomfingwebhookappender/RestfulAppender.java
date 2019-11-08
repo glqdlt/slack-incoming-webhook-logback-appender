@@ -77,6 +77,7 @@ public class RestfulAppender extends AppenderBase<ILoggingEvent> {
                         .body(payload);
                 z.exchange(requestEntity, String.class);
             } catch (RuntimeException | URISyntaxException e) {
+//                  TODO 이거 에러 캐치 어케 되는지 로그백 설계를 좀 봐야할듯
                 throw new RuntimeException(e);
             }
         }
